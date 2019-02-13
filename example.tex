@@ -60,15 +60,16 @@
 
 % For more columns, you can say \begin{dndtable}[your options here].
 % For instance, if you wanted three columns, you could say
-% \begin{dndtable}[XXX]. The usual host of tabular parameters are
+% \begin{DndTable}{XXX}. The usual host of tabular parameters are
 % available as well.
-\header{Nice table}
-\begin{dndtable}
-     \textbf{Table head}  & \textbf{Table head} \\
-     Some value  & Some value \\
-     Some value  & Some value \\
-     Some value  & Some value
-\end{dndtable}
+Tables are set to have alternate rows be colored.
+
+\begin{DndTable}[header=Nice table]{XX}
+  \textbf{Table head} & \textbf{Table head} \\
+  Some value          & Some value \\
+  Some value          & Some value \\
+  Some value          & Some value
+\end{DndTable}
 
 \section{Spells}
 
@@ -121,10 +122,10 @@
   ]
   \dndline%
 
-	% Traits
-	
-	\begin{monsteraction}[Innate Spellcasting]
-		Foo's spellcasting ability is Charisma (spell save DC 12, +4 to hit with spell attacks). It can innately cast the following spells, requiring no material components:
+  % Traits
+  
+  \begin{monsteraction}[Innate Spellcasting]
+    Foo's spellcasting ability is Charisma (spell save DC 12, +4 to hit with spell attacks). It can innately cast the following spells, requiring no material components:
     \DndInnateSpellLevel{misty step}
     \DndInnateSpellLevel[3]{fog cloud, rope trick}
     \DndInnateSpellLevel[1]{identify}
@@ -186,20 +187,20 @@
 
 \section{Colors}
 
-This package provides several global color variables to style \lstinline!commentbox!, \lstinline!quotebox!, \lstinline!paperbox!, and \lstinline!dndtable! environments.
+This package provides several global color variables to style \lstinline!commentbox!, \lstinline!quotebox!, \lstinline!paperbox!, and \lstinline!DndTable! environments.
 
-\begin{dndtable}[lX]
+\begin{DndTable}{lX}
   \textbf{Color}         & \textbf{Description} \\
   \lstinline!commentboxcolor! & Controls \lstinline!commentbox! background. \\
   \lstinline!paperboxcolor!   & Controls \lstinline!paperbox! background. \\
   \lstinline!quoteboxcolor!   & Controls \lstinline!quotebox! background. \\
-  \lstinline!tablecolor!      & Controls background of even \lstinline!dndtable! rows. \\
-\end{dndtable}
+  \lstinline!tablecolor!      & Controls background of even \lstinline!DndTable! rows. \\
+\end{DndTable}
 
 See Table~\ref{tab:colors} for a list of accent colors that match the core books.
 
 \begin{table*}
-  \begin{dndtable}[XX]
+  \begin{DndTable}{XX}
     \textbf{Color}                            & \textbf{Description} \\
     \lstinline!PhbLightGreen!                      & Light green used in PHB Part 1 \\
     \lstinline!PhbLightCyan!                       & Light cyan used in PHB Part 2 \\
@@ -209,7 +210,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
     \lstinline!DmgCoral!                           & Orange-pink used in DMG Part 2 \\
     \lstinline!DmgSlateGray! (\lstinline!DmgSlateGrey!) & Blue-gray used in PHB Part 3 \\
     \lstinline!DmgLilac!                           & Purple-gray used in DMG appendix \\
-  \end{dndtable}
+  \end{DndTable}
   \caption{Colors supported by this package}%
   \label{tab:colors}
 \end{table*}
@@ -217,7 +218,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 \begin{itemize}
   \item Use \lstinline!\setthemecolor[<color>]! to set \lstinline!themecolor!, \lstinline!commentcolor!, \lstinline!paperboxcolor!, and \lstinline!tablecolor! to a specific color.
   \item Calling \lstinline!\setthemecolor! without an argument sets those colors to the current \lstinline!themecolor!.
-  \item \lstinline!commentbox!, \lstinline!dndtable!, \lstinline!paperbox!, and \lstinline!quoteboxcolor! also accept an optional color argument to set the color for a single instance.
+  \item \lstinline!commentbox!, \lstinline!DndTable!, \lstinline!paperbox!, and \lstinline!quoteboxcolor! also accept an optional color argument to set the color for a single instance.
 \end{itemize}
 
 \subsection{Examples}
@@ -233,8 +234,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 
 \setthemecolor[PhbLightCyan]
 
-\header{Example}
-\begin{dndtable}[cX]
+\begin{DndTable}[header=Example Table]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -243,7 +243,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 \end{lstlisting}
 
 \begingroup
@@ -255,8 +255,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 
 \setthemecolor[PhbLightCyan]
 
-\header{Example}
-\begin{dndtable}[cX]
+\begin{DndTable}[header=Example Table]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -265,12 +264,12 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 \endgroup
 
 \subsubsection{Using element color arguments}
 \begin{lstlisting}
-\begin{dndtable}[cX][DmgCoral]
+\begin{DndTable}[color=DmgCoral]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -279,10 +278,10 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 \end{lstlisting}
 
-\begin{dndtable}[cX][DmgCoral]
+\begin{DndTable}[color=DmgCoral]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -291,7 +290,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 
 \section{Map Regions}
 The map region commands provide automatic numbering of areas.
