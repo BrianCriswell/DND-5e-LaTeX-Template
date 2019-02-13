@@ -24,67 +24,74 @@
 
 \lstset{%
   basicstyle=\ttfamily,
-  language=[LaTeX]{TeX},
+  language=[LaTeX]TeX,
+  breaklines=true,
 }
 
-% Start document
 \begin{document}
-
-% Your content goes here
 
 % Comment this out if you're using the article class.
 \chapter{Chapter 1: The Dark \LaTeX}
 
-\section{Main Section}
-\lipsum[2] % filler text
+This package is designed to aid you in writing beautifully typeset documents for the fifth edition of the world's greatest roleplaying game.
 
 \begin{DndReadAloud}
   As you approach this template you get a sense that the blood and tears of many generations went into its making. A warm feeling welcomes you as you type your first words.
 \end{DndReadAloud}
 
-\subsection{Fun with boxes}
-\subsubsection{Even more fun!}
+\section{Fun with boxes}
+The package has three environments for setting text apart so that it is drawn to the reader's attention. The \lstinline!quotebox! is shown above. It is used for text that a game master would read aloud.
+
+The other two boxes are the \lstinline!DndComment! and the \lstinline!DndSidebar!. The \lstinline!DndSidebar! is not breakable and is best used floated toward a page corner while the \lstinline!DndComment! is breakable and can safely be used inline in the text.
 
 \begin{DndComment}{This Is a Comment Box!}
   A \lstinline!DndComment! is a box for minimal highlighting of text. It lacks the ornamentation of \lstinline!DndSidebar!, but it can handle being broken over a column.
 \end{DndComment}
 
-\subtitlesection{Weapon, +1, +2, or +3}
-{Weapon (any), uncommon (+1), rare (+2), or very rare (+3)}
+\section{Headers}
 
-\lipsum[3]
+The \lstinline!\DndItemHeader! is used for things like magic items and traps. Do not include a blank line after calling the function, or you will get a paragraph indent on the following paragraph. The \lstinline!\DndSpellHeader! is used at the top of spells. In both cases, you normally follow the text with a new item, spell, or some level of \lstinline!\section!. If you need to follow it with plain text instead, try inserting a \lstinline!\smallskip! to denote the end of the item.
 
 \begin{DndSidebar}[float=!t]{Behold, the Sidebar!}
   The \lstinline!DndSidebar! is used as a sidebar. It does not break over columns and is best used with \lstinline!tcolorbox float! option float it to one corner of the page where the surrounding text can then flow around it.
 \end{DndSidebar}
 
-% For more columns, you can say \begin{dndtable}[your options here].
-% For instance, if you wanted three columns, you could say
-% \begin{dndtable}[XXX]. The usual host of tabular parameters are
-% available as well.
-\header{Nice table}
-\begin{dndtable}
-     \textbf{Table head}  & \textbf{Table head} \\
-     Some value  & Some value \\
-     Some value  & Some value \\
-     Some value  & Some value
-\end{dndtable}
+\DndItemHeader%
+  {Foo's Quill}
+  {Wondrous item, rare}
+This quill has 3 charges. While holding it, you can use an action to expend 1 of its charges. The quill leaps from your hand and writes a contract applicable to your situation.
 
-\section{Spells}
+The quill regains 1d3 expended charges daily at dawn.
 
-\begin{spell}
+\DndSpellHeader%
   {Beautiful Typesetting}
   {4th-level illusion}
   {1 action}
   {5 feet}
   {S, M (ink and parchment, which the spell consumes)}
   {Until dispelled}
-  You are able to transform a written message of any length into a beautiful scroll. All creatures within range that can see the scroll must make a wisdom saving throw or be charmed by you until the spell ends.
+You are able to transform a written message of any length into a beautiful scroll. All creatures within range that can see the scroll must make a wisdom saving throw or be charmed by you until the spell ends.
 
-  While the creature is charmed by you, they cannot take their eyes off the scroll and cannot willingly move away from the scroll. Also, the targets can make a wisdom saving throw at the end of each of their turns. On a success, they are no longer charmed.
-\end{spell}
+While the creature is charmed by you, they cannot take their eyes off the scroll and cannot willingly move away from the scroll. Also, the targets can make a wisdom saving throw at the end of each of their turns. On a success, they are no longer charmed.
 
-\lipsum[2]
+\section{Tables}
+% For more columns, you can say \begin{dndtable}[your options here].
+% For instance, if you wanted three columns, you could say
+% \begin{DndTable}{XXX}. The usual host of tabular parameters are
+% available as well.
+Tables are set to have alternate rows be colored.
+
+\begin{DndTable}[header=Nice table]{XX}
+  \textbf{Table head} & \textbf{Table head} \\
+  Some value          & Some value \\
+  Some value          & Some value \\
+  Some value          & Some value
+\end{DndTable}
+
+\newpage
+
+\section{Monsters and NPCs}
+The \lstinline!monsterbox! environment is used to typeset monsters and NPCs.
 
 % You can optionally not include the background by saying
 % begin{monsterboxnobg}
@@ -121,10 +128,10 @@
   ]
   \dndline%
 
-	% Traits
-	
-	\begin{monsteraction}[Innate Spellcasting]
-		Foo's spellcasting ability is Charisma (spell save DC 12, +4 to hit with spell attacks). It can innately cast the following spells, requiring no material components:
+  % Traits
+  
+  \begin{monsteraction}[Innate Spellcasting]
+    Foo's spellcasting ability is Charisma (spell save DC 12, +4 to hit with spell attacks). It can innately cast the following spells, requiring no material components:
     \DndInnateSpellLevel{misty step}
     \DndInnateSpellLevel[3]{fog cloud, rope trick}
     \DndInnateSpellLevel[1]{identify}
@@ -188,18 +195,18 @@
 
 This package provides several global color variables to style \lstinline!DndComment!, \lstinline!DndReadAloud!, \lstinline!DndSidebar!, and \lstinline!dndtable! environments.
 
-\begin{dndtable}[lX]
+\begin{DndTable}{lX}
   \textbf{Color}         & \textbf{Description} \\
   \lstinline!commentcolor! & Controls \lstinline!DndComment! background. \\
   \lstinline!sidebarcolor!   & Controls \lstinline!DndSidebar! background. \\
   \lstinline!readaloudcolor!   & Controls \lstinline!DndReadAloud! background. \\
   \lstinline!tablecolor!      & Controls background of even \lstinline!dndtable! rows. \\
-\end{dndtable}
+\end{DndTable}
 
 See Table~\ref{tab:colors} for a list of accent colors that match the core books.
 
 \begin{table*}
-  \begin{dndtable}[XX]
+  \begin{DndTable}{XX}
     \textbf{Color}                            & \textbf{Description} \\
     \lstinline!PhbLightGreen!                      & Light green used in PHB Part 1 \\
     \lstinline!PhbLightCyan!                       & Light cyan used in PHB Part 2 \\
@@ -209,7 +216,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
     \lstinline!DmgCoral!                           & Orange-pink used in DMG Part 2 \\
     \lstinline!DmgSlateGray! (\lstinline!DmgSlateGrey!) & Blue-gray used in PHB Part 3 \\
     \lstinline!DmgLilac!                           & Purple-gray used in DMG appendix \\
-  \end{dndtable}
+  \end{DndTable}
   \caption{Colors supported by this package}%
   \label{tab:colors}
 \end{table*}
@@ -233,8 +240,7 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 
 \setthemecolor[PhbLightCyan]
 
-\header{Example}
-\begin{dndtable}[cX]
+\begin{DndTable}[header=Example Table]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -243,20 +249,19 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 \end{lstlisting}
 
 \begingroup
-\setthemecolor[PhbMauve]
+\DndSetThemeColor[PhbMauve]
 
 \begin{DndSidebar}{Example}
   \lipsum[2]
 \end{DndSidebar}
 
-\setthemecolor[PhbLightCyan]
+\DndSetThemeColor[PhbLightCyan]
 
-\header{Example}
-\begin{dndtable}[cX]
+\begin{DndTable}[header=Example Table]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -265,12 +270,12 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 \endgroup
 
 \subsubsection{Using element color arguments}
 \begin{lstlisting}
-\begin{dndtable}[cX][DmgCoral]
+\begin{DndTable}[color=DmgCoral]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -279,10 +284,10 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
 \end{lstlisting}
 
-\begin{dndtable}[cX][DmgCoral]
+\begin{DndTable}[color=DmgCoral]{cX}
   \textbf{d8} & \textbf{Item} \\
   1           & Small wooden button \\
   2           & Red feather \\
@@ -291,53 +296,53 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
   6           & Tasty biscuit \\
   7           & Broken axe handle \\
   8           & Tarnished silver locket \\
-\end{dndtable}
+\end{DndTable}
+
+\newpage
 
 \section{Map Regions}
 The map region commands provide automatic numbering of areas.
 
-\noindent\begin{minipage}{\linewidth}
 \begin{lstlisting}
-\area{Village of Hommlet}
-This is the village of hommlet.
+\DndSetAreaOptions[region=H]
+\DndArea{Village of Hommlet}
+This is the village of Hommlet. \DndAreaRef[region=F]{Foo's Castle} lies on the other side.
 
-\subarea{Inn of the Welcome Wench}
-Inside the village is the inn of the
-Welcome Wench.
-
-\subarea{Blacksmith's Forge}
-There's a blacksmith in town, too.
-
-\area{Foo's Castle}
-This is foo's home, a hovel of mud and
-sticks.
-
-\subarea{Moat}
-This ditch has a board spanning it.
-
-\subarea{Entrance}
-A five-foot hole reveals the dirt floor
-illuminated by a hole in the roof.
-\end{lstlisting}
-\end{minipage}
-
-\area{Village of Hommlet}
-This is the village of hommlet.
-
-\subarea{Inn of the Welcome Wench}
+\DndSubArea{Inn of the Welcome Wench}
 Inside the village is the inn of the Welcome Wench.
 
-\subarea{Blacksmith's Forge}
+\DndSubArea{Blacksmith's Forge}
 There's a blacksmith in town, too.
 
-\area{Foo's Castle}
-This is foo's home, a hovel of mud and sticks.
+\DndSetAreaOptions[region=F]
+\DndArea{Foo's Castle}
+This is Foo's home, a hovel of mud and sticks.
 
-\subarea{Moat}
+\DndSubArea{Moat}
 This ditch has a board spanning it.
 
-\subarea{Entrance}
+\DndSubArea{Entrance}
+A five-foot hole reveals the dirt floor illuminated by a hole in the roof.
+\end{lstlisting}
+
+\DndSetAreaOptions[region=H]
+\DndArea{Village of Hommlet}
+This is the village of Hommlet. \DndAreaRef[region=F]{Foo's Castle} lies on the other side.
+
+\DndSubArea{Inn of the Welcome Wench}
+Inside the village is the inn of the Welcome Wench.
+
+\DndSubArea{Blacksmith's Forge}
+There's a blacksmith in town, too.
+
+\DndSetAreaOptions[region=F]
+\DndArea{Foo's Castle}
+This is Foo's home, a hovel of mud and sticks.
+
+\DndSubArea{Moat}
+This ditch has a board spanning it.
+
+\DndSubArea{Entrance}
 A five-foot hole reveals the dirt floor illuminated by a hole in the roof.
 
-% End document
 \end{document}

@@ -1,24 +1,29 @@
+\ExplSyntaxOn
+
 % Old interface
 %Usage \begin{commentbox}[options]{title}[color]
-\DeclareTColorBox{commentbox}{O{} m O{commentboxcolor}}{%	
-  before upper={%
-   \ifpkglayout%
-     \nottoggle{justified}{\RaggedRight}%
-   \fi%
+  \DeclareTColorBox{commentbox}{O{} m O{commentboxcolor}}{%	
+  before~upper=
+  {
+    \bool_if:NT \l__dnd_layout_bool
+      {
+        \bool_if:NF \l__dnd_justified_bool
+          {\RaggedRight}
+      }
   },
-  frame hidden,
+  frame~hidden,
   boxrule=0pt,
   breakable,
   enhanced,
-  before skip=8pt plus 1pt,
+  before~skip=8pt plus 1pt,
   toptitle=3mm,
   boxsep=0.25ex,
   left=8pt,
   right=8pt,
-  sharp corners,
-  fonttitle=\dnd@BoxTitleFont,
-  fontupper=\dnd@BoxBodyFont,
-  fontlower=\dnd@BoxBodyFont,
+  sharp~corners,
+  fonttitle=\l__dnd_font_box_title_tl,
+  fontupper=\l__dnd_font_box_body_tl,
+  fontlower=\l__dnd_font_box_body_tl,
   title={#2},
   parbox=false,
   colback={#3},
@@ -36,28 +41,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Standard for every comment
 \DeclareTColorBox {__dnd_comment} {o}
-	{
+  {
     before~upper =
       {
-        \ifpkglayout
-          \nottoggle {justified} {\RaggedRight}
-        \fi
+        \bool_if:NT \l__dnd_layout_bool
+          {
+            \bool_if:NF \l__dnd_justified_bool
+              {\RaggedRight}
+          }
       },
-		frame~hidden,
-		boxrule      = 0pt,
-		breakable,
-		enhanced,
-		before~skip  = 8pt plus 1pt,
-		toptitle     = 3mm,
-		boxsep       = 0.25ex,
-		left         = 8pt,
-		right        = 8pt,
-		sharp~corners,
-		fonttitle    = \dnd@BoxTitleFont,
-		fontupper    = \dnd@BoxBodyFont,
-		fontlower    = \dnd@BoxBodyFont,
-		parbox       = false,
-		coltitle     = black,
+    frame~hidden,
+    boxrule      = 0pt,
+    breakable,
+    enhanced,
+    before~skip  = 8pt plus 1pt,
+    toptitle     = 3mm,
+    boxsep       = 0.25ex,
+    left         = 8pt,
+    right        = 8pt,
+    sharp~corners,
+    fonttitle    = \l__dnd_font_box_title_tl,
+    fontupper    = \l__dnd_font_box_body_tl,
+    fontlower    = \l__dnd_font_box_body_tl,
+    parbox       = false,
+    coltitle     = black,
 		after~skip   = 5pt plus 1pt,
 		#1,
   }
