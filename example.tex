@@ -35,22 +35,26 @@
 
 This package is designed to aid you in writing beautifully typeset documents for the fifth edition of the world's greatest roleplaying game.
 
-\begin{quotebox}
+\begin{DndReadAloud}
   As you approach this template you get a sense that the blood and tears of many generations went into its making. A warm feeling welcomes you as you type your first words.
-\end{quotebox}
+\end{DndReadAloud}
 
 \section{Fun with boxes}
 The package has three environments for setting text apart so that it is drawn to the reader's attention. The \lstinline!quotebox! is shown above. It is used for text that a game master would read aloud.
 
-The other two boxes are the \lstinline!commentbox! and the \lstinline!paperbox!. The \lstinline!paperbox! is not breakable and is best used floated toward a page corner while the \lstinline!commentbox! is breakable and can safely be used inline in the text.
+The other two boxes are the \lstinline!DndComment! and the \lstinline!DndSidebar!. The \lstinline!DndSidebar! is not breakable and is best used floated toward a page corner while the \lstinline!DndComment! is breakable and can safely be used inline in the text.
 
-\begin{commentbox}{This Is a Comment Box!}
-  A \lstinline!commentbox! is a box for minimal highlighting of text. It lacks the ornamentation of \lstinline!paperbox!, but it can handle being broken over a column.
-\end{commentbox}
+\begin{DndComment}{This Is a Comment Box!}
+  A \lstinline!DndComment! is a box for minimal highlighting of text. It lacks the ornamentation of \lstinline!DndSidebar!, but it can handle being broken over a column.
+\end{DndComment}
 
 \section{Headers}
 
 The \lstinline!\DndItemHeader! is used for things like magic items and traps. Do not include a blank line after calling the function, or you will get a paragraph indent on the following paragraph. The \lstinline!\DndSpellHeader! is used at the top of spells. In both cases, you normally follow the text with a new item, spell, or some level of \lstinline!\section!. If you need to follow it with plain text instead, try inserting a \lstinline!\smallskip! to denote the end of the item.
+
+\begin{DndSidebar}[float=!t]{Behold, the Sidebar!}
+  The \lstinline!DndSidebar! is used as a sidebar. It does not break over columns and is best used with \lstinline!tcolorbox float! option float it to one corner of the page where the surrounding text can then flow around it.
+\end{DndSidebar}
 
 \DndItemHeader%
   {Foo's Quill}
@@ -58,10 +62,6 @@ The \lstinline!\DndItemHeader! is used for things like magic items and traps. Do
 This quill has 3 charges. While holding it, you can use an action to expend 1 of its charges. The quill leaps from your hand and writes a contract applicable to your situation.
 
 The quill regains 1d3 expended charges daily at dawn.
-
-\begin{paperbox}[float=!t]{Behold, the Paperbox!}
-  The \lstinline!paperbox! is used as a sidebar. It does not break over columns and is best used by floating it to one corner of the page where the surrounding text can then flow around it.
-\end{paperbox}
 
 \DndSpellHeader%
   {Beautiful Typesetting}
@@ -193,14 +193,14 @@ The \lstinline!monsterbox! environment is used to typeset monsters and NPCs.
 
 \section{Colors}
 
-This package provides several global color variables to style \lstinline!commentbox!, \lstinline!quotebox!, \lstinline!paperbox!, and \lstinline!DndTable! environments.
+This package provides several global color variables to style \lstinline!DndComment!, \lstinline!DndReadAloud!, \lstinline!DndSidebar!, and \lstinline!dndtable! environments.
 
 \begin{DndTable}{lX}
   \textbf{Color}         & \textbf{Description} \\
-  \lstinline!commentboxcolor! & Controls \lstinline!commentbox! background. \\
-  \lstinline!paperboxcolor!   & Controls \lstinline!paperbox! background. \\
-  \lstinline!quoteboxcolor!   & Controls \lstinline!quotebox! background. \\
-  \lstinline!tablecolor!      & Controls background of even \lstinline!DndTable! rows. \\
+  \lstinline!commentcolor! & Controls \lstinline!DndComment! background. \\
+  \lstinline!sidebarcolor!   & Controls \lstinline!DndSidebar! background. \\
+  \lstinline!readaloudcolor!   & Controls \lstinline!DndReadAloud! background. \\
+  \lstinline!tablecolor!      & Controls background of even \lstinline!dndtable! rows. \\
 \end{DndTable}
 
 See Table~\ref{tab:colors} for a list of accent colors that match the core books.
@@ -222,9 +222,9 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 \end{table*}
 
 \begin{itemize}
-  \item Use \lstinline!\setthemecolor[<color>]! to set \lstinline!themecolor!, \lstinline!commentcolor!, \lstinline!paperboxcolor!, and \lstinline!tablecolor! to a specific color.
+  \item Use \lstinline!\setthemecolor[<color>]! to set \lstinline!themecolor!, \lstinline!commentcolor!, \lstinline!sidebarcolor!, and \lstinline!tablecolor! to a specific color.
   \item Calling \lstinline!\setthemecolor! without an argument sets those colors to the current \lstinline!themecolor!.
-  \item \lstinline!commentbox!, \lstinline!DndTable!, \lstinline!paperbox!, and \lstinline!quoteboxcolor! also accept an optional color argument to set the color for a single instance.
+  \item \lstinline!DndComment!, \lstinline!dndtable!, \lstinline!DndSidebar!, and \lstinline!DndReadAloud! also accept an optional color argument to set the color for a single instance.
 \end{itemize}
 
 \subsection{Examples}
@@ -234,9 +234,9 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 \begin{lstlisting}
 \setthemecolor[PhbMauve]
 
-\begin{paperbox}{Example}
+\begin{DndSidebar}{Example}
   \lipsum[2]
-\end{paperbox}
+\end{DndSidebar}
 
 \setthemecolor[PhbLightCyan]
 
@@ -255,9 +255,9 @@ See Table~\ref{tab:colors} for a list of accent colors that match the core books
 \begingroup
 \DndSetThemeColor[PhbMauve]
 
-\begin{paperbox}{Example}
+\begin{DndSidebar}{Example}
   \lipsum[2]
-\end{paperbox}
+\end{DndSidebar}
 
 \DndSetThemeColor[PhbLightCyan]
 
