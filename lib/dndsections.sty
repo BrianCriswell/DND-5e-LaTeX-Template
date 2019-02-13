@@ -1,12 +1,7 @@
-\ifpkglayout
+\ExplSyntaxOn
 
-\RequirePackage[titles]{tocloft}
-\RequirePackage{titlesec}	% Used to adjust (sub)section formatting
-
-\iftoggle{multitoc}{%
-  \RequirePackage[toc]{multitoc}
-}{}
-
+\bool_if:NT \l__dnd_layout_bool
+  {
 %Remove Numbering (If you want Numbering set secnumdepth to the appropriate depth)
 \setcounter{secnumdepth}{-1}
 
@@ -45,7 +40,9 @@
 \titlespacing*{\subparagraph}
 {\parindent}{\parskip}{\wordsep}
 
-\fi % \ifpkglayout
+}
+
+\ExplSyntaxOff
 
 % Special command for magic items, traps, and the like.
 \newcommand{\subtitlesection}[2]{
