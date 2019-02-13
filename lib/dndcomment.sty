@@ -1,11 +1,16 @@
 \ExplSyntaxOn
 
 %Usage \begin{commentbox}[options]{title}[color]
-\DeclareTColorBox{commentbox}{O{} m O{commentboxcolor}}{%
-    before~upper={%
-      \ifpkglayout%
-        \nottoggle{justified}{\RaggedRight}%
-      \fi%
+
+\DeclareTColorBox {commentbox} { O {} m O {commentboxcolor} }
+  {
+    before~upper =
+      {
+        \bool_if:NT \l__dnd_layout_bool
+          {
+            \bool_if:NF \l__dnd_justified_bool
+              {\RaggedRight}
+          }
       },
     frame~hidden,
     boxrule      = 0pt,
@@ -21,9 +26,9 @@
     fontupper    = \l__dnd_font_box_body_tl,
     fontlower    = \l__dnd_font_box_body_tl,
     title        = {#2},
-    parbox=false,
-    colback      = {#3},
-    colbacktitle = {#3},
+    parbox       = false,
+    colback      = #3,
+    colbacktitle = #3,
     coltitle     = black,
     after        = { \vspace { 5pt plus 1pt } \noindent },
     #1

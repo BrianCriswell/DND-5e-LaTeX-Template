@@ -88,17 +88,15 @@
   #1
 }
 
-\ExplSyntaxOff
-
-\iftoggle{bool-bg}{
-  \let\monsterbox\monsterboxbg%
-  \let\endmonsterbox\endmonsterboxbg%
-}{
-  \let\monsterbox\monsterboxnobg%
-  \let\endmonsterbox\endmonsterboxnobg%
-}
-
-\ExplSyntaxOn
+\bool_if:NTF \l__dnd_show_background_bool
+  {
+    \let\monsterbox\monsterboxbg%
+    \let\endmonsterbox\endmonsterboxbg%
+  }
+  {
+    \let\monsterbox\monsterboxnobg%
+    \let\endmonsterbox\endmonsterboxnobg%
+  }
 
 % Define Monster subsection header style
 \newcommand{\monstersection}[1]{%

@@ -1,10 +1,15 @@
 \ExplSyntaxOn
 
-\ifpkglayout
-  \RequirePackage{bookman}
-  \RequirePackage[T1]{fontenc}
-  \renewcommand{\sfdefault}{lmss}
-\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bool_if:NT \l__dnd_layout_bool
+  {
+    \RequirePackage{bookman}
+    \RequirePackage[T1]{fontenc}
+    \renewcommand{\sfdefault}{lmss}
+  }
 
 \keys_define:nn { dnd / fonts }
   {
