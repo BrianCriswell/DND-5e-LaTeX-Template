@@ -1,9 +1,9 @@
 \ExplSyntaxOn
 
-\ifpkglayout
-
-% Remove Numbering (If you want Numbering set secnumdepth to the appropriate depth)
-\setcounter {secnumdepth} {-1}
+\bool_if:NT \l__dnd_layout_bool
+  {
+%Remove Numbering (If you want Numbering set secnumdepth to the appropriate depth)
+\setcounter{secnumdepth}{-1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section formatting
@@ -11,7 +11,7 @@
 
 % Chapter
 \titleformat {\chapter}
-  { \dnd@TitleFont \Huge \color {titlered} } % format
+  { \l__dnd_font_title_tl \Huge \color {titlered} } % format
   { \thechapter \quad } % label
   {0pt} % sep
   {} % before-code
@@ -22,42 +22,42 @@
   {20pt} % after-sep
 
 %\ifdef{\cftchapfont}{%
-%  \renewcommand \cftchapfont { \color { titlered } \dnd@TitleFont \bfseries }
+%  \renewcommand \cftchapfont { \color { titlered } \l__dnd_font_title_tl \bfseries }
 %}{}
 
 % Section
 \titleformat {\section}
-  { \dnd@TitleFont \LARGE \color {titlered} } % format
+  { \l__dnd_font_title_tl \LARGE \color {titlered} } % format
   { \thesection \quad } % label
   {0pt} % sep
   { \RaggedRight \nopagebreak } % before-code
 
-% \titlespacing* { \section }
+% \titlespacing* {\section}
 %   { 0pt } % left
 %   { 1.5ex plus .2ex minus .2ex } % before-sep
 %   { 0pt } % after-sep
 
 % Subsection
 \titleformat {\subsection}
-  { \dnd@TitleFont \Large \color {titlered} } % format
+  { \l__dnd_font_title_tl \Large \color {titlered} } % format
   { \thesubsection \quad } % label
   {0pt} % sep
   { \RaggedRight \nopagebreak } % before-code
   [ \titleline { \color {titlegold} \titlerule [1pt] } ] % after-code
 
-% \titlespacing*{ \subsection }
-%   { 0pt } % left
+% \titlespacing* {\subsection}
+%   { 0pt }   % left
 %   { 1.6ex } % before-sep
 %   { .75ex } % after-sep
 
 % Subsubsection
 \titleformat {\subsubsection}
-  { \dnd@TitleFont \large \color {titlered} } % format
+  { \l__dnd_font_title_tl \large \color {titlered} } % format
   { \thesubsubsection \quad } % label
   {0pt} % sep
   { \RaggedRight \nopagebreak } % before-code
 
-% \titlespacing* { \subsubsection }
+% \titlespacing* {\subsubsection}
 %   { 0pt } % left
 %   { 1.7ex plus .2ex minus .2ex } % before-sep
 %   { 0pt } % after-sep
@@ -88,7 +88,9 @@
   {\parskip}   % before-sep
   {\wordsep}   % after-sep
 
-\fi % \ifpkglayout
+}
+
+\ExplSyntaxOff
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Special command for magic items, traps, and the like.
@@ -142,11 +144,11 @@
 % Labelling helpers
 \newcommand{\AreaLabel@Prefix}{area}
 \newcommand{\SetAreaLabelPrefix}[1]{%
-  \renewcommand{\AreaLabel@Prefix}{#1}}
+\renewcommand{\AreaLabel@Prefix}{#1}}
 
 \newcounter{Area}
 \newcommand\ResetAreas{%
-  \setcounter{Area}{0}}
+\setcounter{Area}{0}}
 
 \NewDocumentCommand\area{mo}{%
   \refstepcounter{Area}%
