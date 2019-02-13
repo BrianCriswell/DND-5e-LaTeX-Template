@@ -90,8 +90,6 @@
 
 }
 
-\ExplSyntaxOff
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Special command for magic items, traps, and the like.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -140,6 +138,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Map Areas and their References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ExplSyntaxOff
+
 % Old interface
 % Labelling helpers
 \newcommand{\AreaLabel@Prefix}{area}
@@ -177,6 +178,8 @@
 \newcommand{\DetailArea@Prefix}{}
 \newcommand{\SetDetailAreaPrefix}[1]{\renewcommand{\DetailArea@Prefix}
       {#1--\arabic{DetailArea}\par\expandafter\ignorespaces\noindent}}
+
+\ExplSyntaxOn
 
 % New interface
 \tl_new:N \l__dnd_area_num_depth_tl
