@@ -5,7 +5,7 @@
 \newcommand{\header}[1]{{	
 	\par\vspace*{8pt}	
 	\noindent	
-	\dnd@TableTitleFont	
+	\l__dnd_font_table_title_tl
   #1}}
 
 % Centered Column
@@ -16,7 +16,7 @@
 \NewDocumentEnvironment{dndtable}{O{XX} O{tablecolor}}{%	
     \par\vspace*{8pt}	
     \noindent	
-    \dnd@TableBodyFont
+    \l__dnd_font_table_body_tl
     \rowcolors{1}{}{#2}
     \tabularx{\linewidth}{#1}
   }{%
@@ -50,12 +50,12 @@
     \tl_if_empty:NF \l__dnd_table_header_tl
       {
         \group_begin:
-          \dnd@TableTitleFont \l__dnd_table_header_tl
+          \l__dnd_font_table_title_tl \l__dnd_table_header_tl
           \par \smallskip \noindent
         \group_end:
       }
 
-    \dnd@TableBodyFont
+    \l__dnd_font_table_body_tl
     
     \rowcolors {1} {} {\l__dnd_table_color_tl}
     
@@ -66,5 +66,5 @@
     
     \group_end:
   }
-
+  
 \ExplSyntaxOff
