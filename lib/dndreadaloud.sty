@@ -6,13 +6,15 @@
 % Standard for every read-aloud text
 \DeclareTColorBox {__dnd_read_aloud} {o}
 	{
-    before~upper    =
-      {
-        \ifpkglayout
-          \nottoggle {justified} {\RaggedRight}
-        \fi
-      },
-    code            = {\linespread {1.25} },
+		before~upper    =
+			{
+        \bool_if:NT \l__dnd_layout_bool
+          {
+            \bool_if:NF \l__dnd_justified_bool
+              {\RaggedRight}
+          }
+		  },
+    code            = { \linespread {1.25} },
     enhanced~jigsaw,
     frame~hidden,
     boxrule         = 0pt,
@@ -26,8 +28,8 @@
     parbox          = false,
     borderline~west = {1pt} {-0.5pt} {titlered},
     borderline~east = {1pt} {-0.5pt} {titlered},
-    fontupper       = \dnd@BoxBodyFont,
-    fontlower       = \dnd@BoxBodyFont,
+		fontupper       = \l__dnd_font_box_body_tl,
+		fontlower       = \l__dnd_font_box_body_tl,
     overlay         =
       {
         \foreach\n ~ in ~ { north~east, north~west, south~east, south~west }
