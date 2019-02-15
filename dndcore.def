@@ -80,24 +80,13 @@
       }
   }
 
-% Fancy DnD 5e stat block rule
-\newcommand{\dndline}{%
-  \noindent
-  \begin{tikzpicture}[]
-    \draw [ rulered, fill = rulered ] ( 0, 0 ) -- ( 0, 0.1 ) -- ( \textwidth, 0.05 );
-  \end{tikzpicture}%
-  \par%
-}
-\renewcommand{\hline}{%
-  \__dnd_deprecated:nnn { \noexpand \hline } {1.0} { Use ~ \noexpand \dndline ~ for ~ stat ~ block ~ rules. }
-  \dndline%
-}
-
 % Load other modules of this package after all dependencies to avoid load order
 % conflicts (e.g., package options). Low-level modules first.
 \RequirePackage{lib/compat}       % compatibility definitions
+\RequirePackage{lib/dndutility}   % utility functions
 \RequirePackage{lib/dndcolors}    % color definitions
 \RequirePackage{lib/dndfonts}     % font definitions
+\RequirePackage{lib/dndstrings}   % Load document strings
 
 % Main modules in alphabetical order
 \RequirePackage{lib/dndcomment}   % inline comment boxes
@@ -109,7 +98,6 @@
 \RequirePackage{lib/dndsections}  % section styling
 \RequirePackage{lib/dndsidebar}   % sidebars
 \RequirePackage{lib/dndspell}     % \spell definition
-\RequirePackage{lib/dndstrings}   % Load document strings
 \RequirePackage{lib/dndtable}     % \dndtable definition
 
 \ExplSyntaxOff

@@ -4,23 +4,23 @@
 % 1. Copy and paste the following code block.
 % 2. Substitute the <language> token with the language name
 %     (i.e. \addto\captionsfrench).
-% 3. Replace the Enlish strings with the translations.
+% 3. Replace the English strings with the translations.
 % Please keep languages in alphabetical order by English name.
 
 %\addto\captions<language> % Replace <language> tag with your language
 %  {
-%    % Monster basics
+    % Monster basics
 %    \renewcommand\armorclassname{Armor~Class}
 %    \renewcommand\hitpointsname{Hit~Points}
 %    \renewcommand\speedname{Speed}
-%    % Monster ability scores
+    % Monster ability scores
 %    \renewcommand\strstatname{STR}
 %    \renewcommand\dexstatname{DEX}
 %    \renewcommand\constatname{CON}
 %    \renewcommand\intstatname{INT}
 %    \renewcommand\wisstatname{WIS}
 %    \renewcommand\chastatname{CHA}
-%    % Monster details
+    % Monster details
 %    \renewcommand\skillsname{Skills}
 %    \renewcommand\dimmname{Damage~Immunities}
 %    \renewcommand\dvulname{Damage~Vulnerabilities}
@@ -28,20 +28,26 @@
 %    \renewcommand\cimmname{Condition~Immunities}
 %    \renewcommand\savesname{Saving~Throws}
 %    \renewcommand\sensesname{Senses}
+%    \renewcommand\defaultsensesname{passive~Perception~10}
 %    \renewcommand\languagesname{Languages}
 %    \renewcommand\challengename{Challenge}
-%    \newcommand\xpname{XP}
-%    % Monster attack
+%    \renewcommand\xpname{XP}
+    % Monster attack
 %    \renewcommand\ftname{ft.}
-%    \renewcommand\meleeattackname{Melee Weapon~Attack}
-%    \renewcommand\rangedattackname{Ranged Weapon~Attack}
-%    \renewcommand\meleeorrangedattackname{Melee~or~Ranged~Weapon~Attack}
+%    \renewcommand\weaponname{Weapon}
+%    \renewcommand\spellname{Spell}
+%    \renewcommand\meleeattackname{Melee~|1|~Attack}
+%    \renewcommand\rangedattackname{Ranged~|1|~Attack}
+%    \renewcommand\meleeorrangedattackname{Melee~or~Ranged~|1|~Attack}
+%    \renewcommand\orname{or}
 %    \renewcommand\tohitname{to~hit}
+%    \renewcommand\defaulttargetsname{one~target}
 %    \renewcommand\reachname{reach}
 %    \renewcommand\rangename{range}
 %    \renewcommand\hitname{Hit}
 %    \renewcommand\damagename{damage}
-%    % Spell levels
+%    \renewcommand\plusname{plus}
+    % Spell levels
 %    \renewcommand\spellcantripsname{Cantrips}
 %    \renewcommand\spellfirstlevelname{1st~level}
 %    \renewcommand\spellsecondlevelname{2nd~level}
@@ -52,13 +58,13 @@
 %    \renewcommand\spellseventhlevelname{7th~level}
 %    \renewcommand\spelleighthlevelname{8th~level}
 %    \renewcommand\spellninthlevelname{9th~level}
-%    % Spell slots
+    % Spell slots
 %    \renewcommand\spellatwillname{at~will}
 %    \renewcommand\spelloneslotname{1~slot}
 %    \renewcommand\spelltwoslotsname{2~slots}
 %    \renewcommand\spellthreeslotsname{3~slots}
 %    \renewcommand\spellfourslotsname{4~slots}
-%    % Innate spellcasting
+    % Innate spellcasting
 %    \renewcommand\innateatwillname{At~will}
 %    \renewcommand\numberperdayname{|1|/day}
 %    \renewcommand\numberperdayeachname{|1|/day~each}
@@ -93,30 +99,36 @@
     \renewcommand\cimmname{Immunit\`a~Condizioni}
     \renewcommand\savesname{Tiri~Salvezza}
     \renewcommand\sensesname{Sensi}
+%    \renewcommand\defaultsensesname{passive~Perception~10}
     \renewcommand\languagesname{Linguaggi}
     \renewcommand\challengename{Sfida}
-    \newcommand\xpname{PE}
+    \renewcommand\xpname{PE}
     % Monster attack
     \renewcommand\ftname{m.}
-    \renewcommand\meleeattackname{Attacco~con~Arma~da~Mischia}
-    \renewcommand\rangedattackname{Attacco~con~Arma~a~Distanza}
-    \renewcommand\meleeorrangedattackname{Attacco~con~Arma~da~Mischia~o~a~Distanza}
+    \renewcommand\weaponname{Arma}
+    \renewcommand\spellname{Sillabare}
+    \renewcommand\meleeattackname{Attacco~con~|1|~da~Mischia}
+    \renewcommand\rangedattackname{Attacco~con~|1|~a~Distanza}
+    \renewcommand\meleeorrangedattackname{Attacco~con~|1|~da~Mischia~o~a~Distanza}
+    \renewcommand\orname{o}
     \renewcommand\tohitname{per~colpire}
+%    \renewcommand\defaulttargetsname{one~target}
     \renewcommand\reachname{portata}
     \renewcommand\rangename{gittata}
     \renewcommand\hitname{Colpito}
     \renewcommand\damagename{danno}
+%    \renewcommand\plusname{plus}
     % Spell levels
     \renewcommand\spellcantripsname{Trucchetti}
-    \renewcommand\spellfirstlevelname{1°~livello}
-    \renewcommand\spellsecondlevelname{2°~livello}
-    \renewcommand\spellthirdlevelname{3°~livello}
-    \renewcommand\spellfourthlevelname{4°~livello}
-    \renewcommand\spellfifthlevelname{5°~livello}
-    \renewcommand\spellsixthlevelname{6°~livello}
-    \renewcommand\spellseventhlevelname{7°~livello}
-    \renewcommand\spelleighthlevelname{8°~livello}
-    \renewcommand\spellninthlevelname{9°~livello}
+    \renewcommand\spellfirstlevelname{1\degree{}~livello}
+    \renewcommand\spellsecondlevelname{2\degree{}~livello}
+    \renewcommand\spellthirdlevelname{3\degree{}~livello}
+    \renewcommand\spellfourthlevelname{4\degree{}~livello}
+    \renewcommand\spellfifthlevelname{5\degree{}~livello}
+    \renewcommand\spellsixthlevelname{6\degree{}~livello}
+    \renewcommand\spellseventhlevelname{7\degree{}~livello}
+    \renewcommand\spelleighthlevelname{8\degree{}~livello}
+    \renewcommand\spellninthlevelname{9\degree{}~livello}
     % Spell slots
     \renewcommand\spellatwillname{a~volont\`a}
     \renewcommand\spelloneslotname{1~slot}
@@ -157,21 +169,27 @@
     \renewcommand\dresname{Сопротивление~урону}
     \renewcommand\cimmname{Иммунитет~к~состояниям}
     \renewcommand\savesname{Спасброски}
+%    \renewcommand\defaultsensesname{passive~Perception~10}
     \renewcommand\sensesname{Чувства}
     \renewcommand\languagesname{Языки}
     \renewcommand\challengename{Опасность}
-%    \newcommand\xpname{XP}
-%    % Monster attack
+%    \renewcommand\xpname{XP}
+    % Monster attack
 %    \renewcommand\ftname{ft.}
-%    \renewcommand\meleeattackname{Melee Weapon~Attack}
-%    \renewcommand\rangedattackname{Ranged Weapon~Attack}
-%    \renewcommand\meleeorrangedattackname{Melee~or~Ranged~Weapon~Attack}
+%    \renewcommand\weaponname{Weapon}
+%    \renewcommand\spellname{Spell}
+%    \renewcommand\meleeattackname{Melee~|1|~Attack}
+%    \renewcommand\rangedattackname{Ranged~|1|~Attack}
+%    \renewcommand\meleeorrangedattackname{Melee~or~Ranged~|1|~Attack}
+%    \renewcommand\orname{or}
 %    \renewcommand\tohitname{to~hit}
+%    \renewcommand\defaulttargetsname{one~target}
 %    \renewcommand\reachname{reach}
 %    \renewcommand\rangename{range}
 %    \renewcommand\hitname{Hit}
 %    \renewcommand\damagename{damage}
-%    % Spell levels
+%    \renewcommand\plusname{plus}
+    % Spell levels
 %    \renewcommand\spellcantripsname{Cantrips}
 %    \renewcommand\spellfirstlevelname{1st~level}
 %    \renewcommand\spellsecondlevelname{2nd~level}
@@ -182,13 +200,13 @@
 %    \renewcommand\spellseventhlevelname{7th~level}
 %    \renewcommand\spelleighthlevelname{8th~level}
 %    \renewcommand\spellninthlevelname{9th~level}
-%    % Spell slots
+    % Spell slots
 %    \renewcommand\spellatwillname{at~will}
 %    \renewcommand\spelloneslotname{1~slot}
 %    \renewcommand\spelltwoslotsname{2~slots}
 %    \renewcommand\spellthreeslotsname{3~slots}
 %    \renewcommand\spellfourslotsname{4~slots}
-%    % Innate spellcasting
+    % Innate spellcasting
 %    \renewcommand\innateatwillname{At~will}
 %    \renewcommand\numberperdayname{|1|/day}
 %    \renewcommand\numberperdayeachname{|1|/day~each}
