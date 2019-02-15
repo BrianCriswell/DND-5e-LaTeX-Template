@@ -1,17 +1,17 @@
 % Monster environment sty file
 % Old interface
 
-% Fancy DnD 5e stat block rule	
-\newcommand{\dndline}{%	
-  \noindent	
-  \begin{tikzpicture}[]	
-    \draw [rulered, fill=rulered] (0, 0) --(0,0.1) -- (\textwidth, 0.05);	
-  \end{tikzpicture}%	
-  \par%	
-}	
-\renewcommand{\hline}{%	
-  \dnd@deprecate{redefined \noexpand\hline}{0.8}[Use \noexpand\dndline for stat block rules.]%	
-  \dndline%	
+% Fancy DnD 5e stat block rule
+\newcommand{\dndline}{%
+\noindent
+\begin{tikzpicture}[]
+  \draw [ rulered, fill = rulered ] ( 0, 0 ) -- ( 0, 0.1 ) -- ( \textwidth, 0.05 );
+\end{tikzpicture}%
+\par%
+}
+\renewcommand{\hline}{%
+\__dnd_deprecated:nnn { \noexpand \hline } {1.0} { Use ~ \noexpand \DndMonsterBasics ~ \noexpand \DndMonsterDetails , ~ which ~ include ~ the ~ rules ~ directly . }
+\dndline%
 }
 
 \RequirePackage{fp}
@@ -35,7 +35,7 @@
   \StrCut{\DiceArg}{d}\DiceNum\DiceSides%			split string
   \StrCut{\DiceSides}{+}\DiceSides\DiceAddMod%
   \StrCut{\DiceSides}{-}\DiceSides\DiceSubMod%
-  \FPeval{\DiceAvg}{(\DiceSides+1)/2*\DiceNum}%	calculate avg roll	
+  \FPeval{\DiceAvg}{(\DiceSides+1)/2*\DiceNum}%	calculate avg roll
   \IfInteger{\DiceAddMod}{%
     \FPadd{\DiceAvg}{\DiceAvg}{\DiceAddMod}%	add value
     \def\DiceMod{ + \DiceAddMod}%
@@ -370,7 +370,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Monster environments
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Stat block made to look like the Monster Manual NPC definitions 
+% Stat block made to look like the Monster Manual NPC definitions
 \DeclareTColorBox {DndMonsterNoBg} { o m }
   {
     enhanced,
@@ -384,9 +384,9 @@
     sharp~corners,
     opacityback = 0,
     colframe    = titlered,
-    fonttitle   = \dnd@StatBlockTitleFont \Large,
-    fontupper   = \dnd@StatBlockBodyFont,
-    fontlower   = \dnd@StatBlockBodyFont,
+    fonttitle   = \l__dnd_font_stat_block_title_tl \Large,
+    fontupper   = \l__dnd_font_stat_block_body_tl,
+    fontlower   = \l__dnd_font_stat_block_body_tl,
     title       = {#2},
     coltitle    = titlered,
     #1
@@ -414,16 +414,16 @@
     colback          = statblockbg,
     colbacktitle     = statblockbg,
     colframe         = titlered,
-    fonttitle        = \dnd@StatBlockTitleFont\Large,
+    fonttitle        = \l__dnd_font_stat_block_title_tl \Large,
     coltitle         = titlered,
-    fontupper        = \dnd@StatBlockBodyFont,
-    fontlower        = \dnd@StatBlockBodyFont,
+    fontupper        = \l__dnd_font_stat_block_body_tl,
+    fontlower        = \l__dnd_font_stat_block_body_tl,
     title            = {#2},
     #1
   }
 
 % Alias DndMonster to correct background type
-\iftoggle { bool-bg }
+\bool_if:NTF \l__dnd_show_background_bool
   {
     \let\DndMonster\DndMonsterBg
     \let\endDndMonster\endDndMonsterBg
@@ -460,7 +460,7 @@
 \setlist [__dnd_monster_attributes]
   {
     before   = \color {titlered},
-    font     = \dnd@StatBlockBodyFont \textbf,
+    font     = \l__dnd_font_stat_block_title_tl \textbf,
     labelsep = \l__dnd_space_dim,
     noitemsep,
     nosep,
@@ -631,7 +631,7 @@
       \IfInteger {#1}
         {
           \int_set:Nn \l_tmpa_int { \fp_eval:n { floor ( ( #1 - 10 ) / 2 ) } }
-          
+
           #1 ~ (
           \int_compare:nNnTF {\l_tmpa_int} < {0}
           { \(-\) }
@@ -703,7 +703,7 @@
     \group_end:
   }
 
-% Wrapper for monster actions  
+% Wrapper for monster actions
 \NewDocumentCommand {\DndMonsterAction} {m}
   { \smallskip \textsl { \textbf {#1.} } }
 
@@ -713,7 +713,7 @@
   {
     \group_begin:
       \medskip
-      \color {titlered} \dnd@StatBlockSubtitleFont \large #1
+      \color {titlered} \l__dnd_font_stat_block_section_tl \large #1
       % \rule is a horizontal command, so placing it under the title incurs extra
       % line spacing. Use \hrule (a vertical command) instead.
       \vspace {3pt}
@@ -721,13 +721,13 @@
       \vspace {3pt}
     \group_end:
   }
-  
+
 % Spellcasting levels
 \newlist {DndMonsterSpells} {description} {1}
 \setlist [DndMonsterSpells]
   {
     before   = {\medskip},
-    font     = \normalfont \dnd@StatBlockBodyFont,
+    font     = \normalfont \l__dnd_font_stat_block_body_tl,
     labelsep = \l__dnd_space_dim,
     noitemsep,
     nosep,
@@ -745,7 +745,7 @@
 \NewDocumentCommand {\DndInnateSpellLevel} { O {\innateatwillname} m }
   {
     \item
-      [    
+      [
         \IfInteger {#1}
         {
           \str_if_in:NnTF {#2} {,}
@@ -849,7 +849,7 @@
   }
 
 \cs_new_protected:Npn \__dnd_if_plus_dmg:
-  {    
+  {
     \tl_if_empty:NF {\l__plus_dmg_tl}
     { ~ \plusname\ \l__plus_dmg_tl\ \l__plus_dmg_type_tl\ \damagename }
   }
@@ -859,19 +859,19 @@
     \tl_if_empty:NF {\l__or_dmg_tl}
     {
       , ~ \orname\ \l__or_dmg_tl\ \l__dmg_type_tl\ \damagename\ \l__or_dmg_when_tl
-      
+
       \tl_if_empty:NF {\l__plus_dmg_tl}
         {,}
     }
   }
 
 \cs_new_protected:Npn \__dnd_monster_attack:
-  {    
+  {
     \__dnd_check_for_key:Nnn \l__name_tl {\DndMonsterAttack} {name}
     \__dnd_check_for_key:Nnn \l__mod_tl {\DndMonsterAttack} {mod}
 
     \begin{DndMonsterAction} {\l__name_tl}~
-      
+
       \str_case_e:nnF {\l__dnd_attack_distance_tl}
         {
           { melee }
@@ -887,8 +887,8 @@
           \textit{ \__dnd_caption:nn {\meleeorrangedattackname} {\l__dnd_attack_type_tl} : } ~ \__dnd_monster_to_hit:, ~ \__dnd_monster_reach:\ \orname\ \__dnd_monster_range:
         }
       , ~ \l__targets_tl. ~
-      \textit { \hitname : } ~ 
-      
+      \textit { \hitname : } ~
+
       \str_if_empty:NF {\l__dmg_tl} % Don't show any damage if `dmg' is not set.
         {
           \l__dmg_tl\ \l__dmg_type_tl\ \damagename
@@ -932,7 +932,7 @@
 \setlist [DndMonsterLegendaryActions]
   {
     before   = {\medskip},
-    font     = \dnd@StatBlockBodyFont,
+    font     = \l__dnd_font_stat_block_body_tl,
     labelsep = \l__dnd_space_dim,
     noitemsep,
     nosep,
