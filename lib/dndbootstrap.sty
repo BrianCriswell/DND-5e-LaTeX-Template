@@ -1,0 +1,21 @@
+\RequirePackage {expl3}
+
+\ExplSyntaxOn
+%% Synchronize package versions
+\tl_const:Nn \cdndpackagedatetl {2019/02/09}
+\tl_const:Nn \cdndpackageversiontl {0.7.0}
+
+%% deprecate warning used in options and throughout the collection
+\msg_new:nnn {dnd} {deprecated} { #1 ~ is ~ deprecated ~ and ~ will ~ be ~ removed ~ in ~ version ~ #2. ~ #3 }
+
+\cs_new_protected:Npn { \__dnd_deprecated:nnn } #1#2#3
+  {
+    \msg_warning:nnnnn { dnd } { deprecated } {#1} {#2} {#3}
+  }
+
+\cs_new_protected:Npn { \__dnd_deprecated:nn } #1#2
+  {
+    \msg_warning:nnnnn { dnd } { deprecated } {#1} {#2} {}
+  }
+
+\ProvidesExplPackage {dndbootstrap} {\cdndpackagedatetl} {\cdndpackageversiontl} { Definitions needed by most dnd packages. }

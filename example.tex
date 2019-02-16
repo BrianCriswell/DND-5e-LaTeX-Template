@@ -21,6 +21,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lipsum}
 \usepackage{listings}
+\usepackage{stfloats} % fix for bottom-placement of figure
 
 \lstset{%
   basicstyle=\ttfamily,
@@ -63,10 +64,191 @@ This quill has 3 charges. While holding it, you can use an action to expend 1 of
 
 The quill regains 1d3 expended charges daily at dawn.
 
+\section{Spells}
+\DndSpellHeader%
+  {Beautiful Typesetting}
+  {4th-level illusion}
+  {1 action}
+  {5 feet}
+  {S, M (ink and parchment, which the spell consumes)}
+  {Until dispelled}
+You are able to transform a written message of any length into a beautiful scroll. All creatures within range that can see the scroll must make a wisdom saving throw or be charmed by you until the spell ends.
+
+While the creature is charmed by you, they cannot take their eyes off the scroll and cannot willingly move away from the scroll. Also, the targets can make a wisdom saving throw at the end of each of their turns. On a success, they are no longer charmed.
+
+\section{Tables}
+% For more columns, you can say \begin{dndtable}[your options here].
+% For instance, if you wanted three columns, you could say
+% \begin{DndTable}{XXX}. The usual host of tabular parameters are
+% available as well.
+Tables are set to have alternate rows be colored.
+
+\begin{DndTable}[header=Nice table]{XX}
+  \textbf{Table head} & \textbf{Table head} \\
+  Some value          & Some value \\
+  Some value          & Some value \\
+  Some value          & Some value
+\end{DndTable}
+
+\newpage
+
+\begin{table*}[b]
+  \begin{DndTable}{XX}
+    \textbf{Color}                            & \textbf{Description} \\
+    \lstinline!PhbLightGreen!                      & Light green used in PHB Part 1 \\
+    \lstinline!PhbLightCyan!                       & Light cyan used in PHB Part 2 \\
+    \lstinline!PhbMauve!                           & Pale purple used in PHB Part 3 \\
+    \lstinline!PhbTan!                             & Light brown used in PHB appendix \\
+    \lstinline!DmgLavender!                        & Pale purple used in DMG Part 1 \\
+    \lstinline!DmgCoral!                           & Orange-pink used in DMG Part 2 \\
+    \lstinline!DmgSlateGray! (\lstinline!DmgSlateGrey!) & Blue-gray used in PHB Part 3 \\
+    \lstinline!DmgLilac!                           & Purple-gray used in DMG appendix \\
+  \end{DndTable}
+  \caption{Colors supported by this package}%
+  \label{tab:colors}
+\end{table*}
+
+\section{Colors}
+This package provides several global color variables to style \lstinline!DndComment!, \lstinline!DndReadAloud!, \lstinline!DndSidebar!, and \lstinline!dndtable! environments.
+
+\begin{DndTable}{lX}
+  \textbf{Color}         & \textbf{Description} \\
+  \lstinline!commentcolor! & Controls \lstinline!DndComment! background. \\
+  \lstinline!sidebarcolor!   & Controls \lstinline!DndSidebar! background. \\
+  \lstinline!readaloudcolor!   & Controls \lstinline!DndReadAloud! background. \\
+  \lstinline!tablecolor!      & Controls background of even \lstinline!dndtable! rows. \\
+\end{DndTable}
+
+See Table~\ref{tab:colors} for a list of accent colors that match the core books.
+
+\begin{itemize}
+  \item Use \lstinline!\DndSetThemeColor[<color>]! to set \lstinline!themecolor!, \lstinline!commentcolor!, \lstinline!sidebarcolor!, and \lstinline!tablecolor! to a specific color.
+  \item Calling \lstinline!\DndSetThemeColor! without an argument sets those colors to the current \lstinline!themecolor!.
+  \item \lstinline!DndComment!, \lstinline!dndtable!, \lstinline!DndSidebar!, and \lstinline!DndReadAloud! also accept an optional color argument to set the color for a single instance.
+\end{itemize}
+
+\subsection{Examples}
+
+\subsubsection{Using \lstinline!themecolor!}
+
+\begin{lstlisting}
+\DndSetThemeColor[PhbMauve]
+
+\begin{DndSidebar}{Example}
+  \lipsum[2]
+\end{DndSidebar}
+
+\DndSetThemeColor[PhbLightCyan]
+
+\begin{DndTable}[header=Example Table]{cX}
+  \textbf{d8} & \textbf{Item} \\
+  1           & Small wooden button \\
+  2           & Red feather \\
+  3           & Human tooth \\
+  4           & Vial of green liquid \\
+  6           & Tasty biscuit \\
+  7           & Broken axe handle \\
+  8           & Tarnished silver locket \\
+\end{DndTable}
+\end{lstlisting}
+
+\begingroup
+\DndSetThemeColor[PhbMauve]
+
+\begin{DndSidebar}{Example}
+  \lipsum[2]
+\end{DndSidebar}
+
+\DndSetThemeColor[PhbLightCyan]
+
+\begin{DndTable}[header=Example Table]{cX}
+  \textbf{d8} & \textbf{Item} \\
+  1           & Small wooden button \\
+  2           & Red feather \\
+  3           & Human tooth \\
+  4           & Vial of green liquid \\
+  6           & Tasty biscuit \\
+  7           & Broken axe handle \\
+  8           & Tarnished silver locket \\
+\end{DndTable}
+\endgroup
+
+\subsubsection{Using element color arguments}
+\begin{lstlisting}
+\begin{DndTable}[color=DmgCoral]{cX}
+  \textbf{d8} & \textbf{Item} \\
+  1           & Small wooden button \\
+  2           & Red feather \\
+  3           & Human tooth \\
+  4           & Vial of green liquid \\
+  6           & Tasty biscuit \\
+  7           & Broken axe handle \\
+  8           & Tarnished silver locket \\
+\end{DndTable}
+\end{lstlisting}
+
+\begin{DndTable}[color=DmgCoral]{cX}
+  \textbf{d8} & \textbf{Item} \\
+  1           & Small wooden button \\
+  2           & Red feather \\
+  3           & Human tooth \\
+  4           & Vial of green liquid \\
+  6           & Tasty biscuit \\
+  7           & Broken axe handle \\
+  8           & Tarnished silver locket \\
+\end{DndTable}
+
+\section{Map Regions}
+The map region commands provide automatic numbering of areas.
+
+\begin{lstlisting}
+\DndSetAreaOptions[region=H]
+\DndArea{Village of Hommlet}
+This is the village of Hommlet. \DndAreaRef[region=F]{Foo's Castle} lies on the other side.
+
+\DndSubArea{Inn of the Welcome Wench}
+Inside the village is the inn of the Welcome Wench.
+
+\DndSubArea{Blacksmith's Forge}
+There's a blacksmith in town, too.
+
+\DndSetAreaOptions[region=F]
+\DndArea{Foo's Castle}
+This is Foo's home, a hovel of mud and sticks.
+
+\DndSubArea{Moat}
+This ditch has a board spanning it.
+
+\DndSubArea{Entrance}
+A five-foot hole reveals the dirt floor illuminated by a hole in the roof.
+\end{lstlisting}
+
+\DndSetAreaOptions[region=H]
+\DndArea{Village of Hommlet}
+This is the village of Hommlet. \DndAreaRef[region=F]{Foo's Castle} lies on the other side.
+
+\DndSubArea{Inn of the Welcome Wench}
+Inside the village is the inn of the Welcome Wench.
+
+\DndSubArea{Blacksmith's Forge}
+There's a blacksmith in town, too.
+
+\DndSetAreaOptions[region=F]
+\DndArea{Foo's Castle}
+This is Foo's home, a hovel of mud and sticks.
+
+\DndSubArea{Moat}
+This ditch has a board spanning it.
+
+\DndSubArea{Entrance}
+A five-foot hole reveals the dirt floor illuminated by a hole in the roof.
+
+\newpage
+
 \section{Monsters and NPCs}
 The \lstinline!DndMonster! environment is used to typeset monsters and NPCs.
 
-\begin{DndMonster}[float*=t, width=\textwidth]{Monster Foo}
+\begin{DndMonster}[float*=b, width=\textwidth]{Monster Foo}
   \begin{multicols}{2}
     \DndMonsterType{Medium aberration (metasyntactic variable), neutral evil}
 
@@ -78,7 +260,7 @@ The \lstinline!DndMonster! environment is used to typeset monsters and NPCs.
       ]
 
     \DndMonsterAbilityScores[
-        str = 12,
+        str =12,
         dex = 8,
         con = 13,
         int = 10,
@@ -178,184 +360,5 @@ The \lstinline!DndMonster! environment is used to typeset monsters and NPCs.
     \end{DndMonsterDescription}
   \end{multicols}
 \end{DndMonster}
-
-\section{Spells}
-\DndSpellHeader%
-  {Beautiful Typesetting}
-  {4th-level illusion}
-  {1 action}
-  {5 feet}
-  {S, M (ink and parchment, which the spell consumes)}
-  {Until dispelled}
-You are able to transform a written message of any length into a beautiful scroll. All creatures within range that can see the scroll must make a wisdom saving throw or be charmed by you until the spell ends.
-
-While the creature is charmed by you, they cannot take their eyes off the scroll and cannot willingly move away from the scroll. Also, the targets can make a wisdom saving throw at the end of each of their turns. On a success, they are no longer charmed.
-
-\section{Tables}
-% For more columns, you can say \begin{dndtable}[your options here].
-% For instance, if you wanted three columns, you could say
-% \begin{DndTable}{XXX}. The usual host of tabular parameters are
-% available as well.
-Tables are set to have alternate rows be colored.
-
-\begin{DndTable}[header=Nice table]{XX}
-  \textbf{Table head} & \textbf{Table head} \\
-  Some value          & Some value \\
-  Some value          & Some value \\
-  Some value          & Some value
-\end{DndTable}
-
-\section{Colors}
-This package provides several global color variables to style \lstinline!DndComment!, \lstinline!DndReadAloud!, \lstinline!DndSidebar!, and \lstinline!dndtable! environments.
-
-\begin{DndTable}{lX}
-  \textbf{Color}         & \textbf{Description} \\
-  \lstinline!commentcolor! & Controls \lstinline!DndComment! background. \\
-  \lstinline!sidebarcolor!   & Controls \lstinline!DndSidebar! background. \\
-  \lstinline!readaloudcolor!   & Controls \lstinline!DndReadAloud! background. \\
-  \lstinline!tablecolor!      & Controls background of even \lstinline!dndtable! rows. \\
-\end{DndTable}
-
-\begin{table*}
-  \begin{DndTable}{XX}
-    \textbf{Color}                            & \textbf{Description} \\
-    \lstinline!PhbLightGreen!                      & Light green used in PHB Part 1 \\
-    \lstinline!PhbLightCyan!                       & Light cyan used in PHB Part 2 \\
-    \lstinline!PhbMauve!                           & Pale purple used in PHB Part 3 \\
-    \lstinline!PhbTan!                             & Light brown used in PHB appendix \\
-    \lstinline!DmgLavender!                        & Pale purple used in DMG Part 1 \\
-    \lstinline!DmgCoral!                           & Orange-pink used in DMG Part 2 \\
-    \lstinline!DmgSlateGray! (\lstinline!DmgSlateGrey!) & Blue-gray used in PHB Part 3 \\
-    \lstinline!DmgLilac!                           & Purple-gray used in DMG appendix \\
-  \end{DndTable}
-  \caption{Colors supported by this package}%
-  \label{tab:colors}
-\end{table*}
-
-See Table~\ref{tab:colors} for a list of accent colors that match the core books.
-
-\begin{itemize}
-  \item Use \lstinline!\setthemecolor[<color>]! to set \lstinline!themecolor!, \lstinline!commentcolor!, \lstinline!sidebarcolor!, and \lstinline!tablecolor! to a specific color.
-  \item Calling \lstinline!\setthemecolor! without an argument sets those colors to the current \lstinline!themecolor!.
-  \item \lstinline!DndComment!, \lstinline!dndtable!, \lstinline!DndSidebar!, and \lstinline!DndReadAloud! also accept an optional color argument to set the color for a single instance.
-\end{itemize}
-
-\subsection{Examples}
-
-\subsubsection{Using \lstinline!themecolor!}
-
-\begin{lstlisting}
-\setthemecolor[PhbMauve]
-
-\begin{DndSidebar}{Example}
-  \lipsum[2]
-\end{DndSidebar}
-
-\setthemecolor[PhbLightCyan]
-
-\begin{DndTable}[header=Example Table]{cX}
-  \textbf{d8} & \textbf{Item} \\
-  1           & Small wooden button \\
-  2           & Red feather \\
-  3           & Human tooth \\
-  4           & Vial of green liquid \\
-  6           & Tasty biscuit \\
-  7           & Broken axe handle \\
-  8           & Tarnished silver locket \\
-\end{DndTable}
-\end{lstlisting}
-
-\begingroup
-\DndSetThemeColor[PhbMauve]
-
-\begin{DndSidebar}{Example}
-  \lipsum[2]
-\end{DndSidebar}
-
-\DndSetThemeColor[PhbLightCyan]
-
-\begin{DndTable}[header=Example Table]{cX}
-  \textbf{d8} & \textbf{Item} \\
-  1           & Small wooden button \\
-  2           & Red feather \\
-  3           & Human tooth \\
-  4           & Vial of green liquid \\
-  6           & Tasty biscuit \\
-  7           & Broken axe handle \\
-  8           & Tarnished silver locket \\
-\end{DndTable}
-\endgroup
-
-\subsubsection{Using element color arguments}
-\begin{lstlisting}
-\begin{DndTable}[color=DmgCoral]{cX}
-  \textbf{d8} & \textbf{Item} \\
-  1           & Small wooden button \\
-  2           & Red feather \\
-  3           & Human tooth \\
-  4           & Vial of green liquid \\
-  6           & Tasty biscuit \\
-  7           & Broken axe handle \\
-  8           & Tarnished silver locket \\
-\end{DndTable}
-\end{lstlisting}
-
-\begin{DndTable}[color=DmgCoral]{cX}
-  \textbf{d8} & \textbf{Item} \\
-  1           & Small wooden button \\
-  2           & Red feather \\
-  3           & Human tooth \\
-  4           & Vial of green liquid \\
-  6           & Tasty biscuit \\
-  7           & Broken axe handle \\
-  8           & Tarnished silver locket \\
-\end{DndTable}
-
-\newpage
-
-\section{Map Regions}
-The map region commands provide automatic numbering of areas.
-
-\begin{lstlisting}
-\DndSetAreaOptions[region=H]
-\DndArea{Village of Hommlet}
-This is the village of Hommlet. \DndAreaRef[region=F]{Foo's Castle} lies on the other side.
-
-\DndSubArea{Inn of the Welcome Wench}
-Inside the village is the inn of the Welcome Wench.
-
-\DndSubArea{Blacksmith's Forge}
-There's a blacksmith in town, too.
-
-\DndSetAreaOptions[region=F]
-\DndArea{Foo's Castle}
-This is Foo's home, a hovel of mud and sticks.
-
-\DndSubArea{Moat}
-This ditch has a board spanning it.
-
-\DndSubArea{Entrance}
-A five-foot hole reveals the dirt floor illuminated by a hole in the roof.
-\end{lstlisting}
-
-\DndSetAreaOptions[region=H]
-\DndArea{Village of Hommlet}
-This is the village of Hommlet. \DndAreaRef[region=F]{Foo's Castle} lies on the other side.
-
-\DndSubArea{Inn of the Welcome Wench}
-Inside the village is the inn of the Welcome Wench.
-
-\DndSubArea{Blacksmith's Forge}
-There's a blacksmith in town, too.
-
-\DndSetAreaOptions[region=F]
-\DndArea{Foo's Castle}
-This is Foo's home, a hovel of mud and sticks.
-
-\DndSubArea{Moat}
-This ditch has a board spanning it.
-
-\DndSubArea{Entrance}
-A five-foot hole reveals the dirt floor illuminated by a hole in the roof.
 
 \end{document}

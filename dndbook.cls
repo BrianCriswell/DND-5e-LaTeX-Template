@@ -1,5 +1,9 @@
-\RequirePackage {expl3}
-\ProvidesExplClass {dndbook} {2019/02/09} {0.7.0} { Template for DnD 5e material }
+\RequirePackage {lib/dndbootstrap}
+\ProvidesExplClass
+  {dndbook}
+  {\cdndpackagedatetl}
+  {\cdndpackageversiontl}
+  { Template for DnD 5e material }
 
 \LoadClass {book}
 

@@ -7,18 +7,18 @@
 % Helps prevent option clash with other packages that include xcolor
 \PassOptionsToPackage {table} {xcolor}
 
-\RequirePackage {array}
-\RequirePackage {calc}
-\RequirePackage {colortbl}
+%\RequirePackage {array}
+%\RequirePackage {calc}
+%\RequirePackage {colortbl}
 \RequirePackage {enumitem}
-\RequirePackage {etoolbox}
+%\RequirePackage {etoolbox}
 \RequirePackage {hang}
-\RequirePackage {keycommand}
+%\RequirePackage {keycommand}
 \RequirePackage [autolanguage ] {numprint}
 \RequirePackage {tabularx}
 \RequirePackage [ breakable, skins, xparse ] {tcolorbox}
-\RequirePackage {tikz}
-\RequirePackage {xcolor}
+%\RequirePackage {tikz}
+%\RequirePackage {xcolor}
 \RequirePackage {xparse}
 
 \sys_if_engine_luatex:T
@@ -50,9 +50,9 @@
 
     % Set paragraph and line spacing
     \linespread {1.1}
-    \setlength { \parindent            } { 1em }
-    \setlength { \RaggedRightRightskip } { 0pt plus 1cm }
-    \setlength { \RaggedRightParindent } { \parindent }
+    \setlength {\parindent}            {1em}
+    \setlength {\RaggedRightRightskip} { 0pt plus 1cm }
+    \setlength {\RaggedRightParindent} {\parindent}
     \hyphenpenalty = 1000  % Fewer hyphens
 
     % Set left justification if not justified
@@ -92,12 +92,8 @@
 \RequirePackage{lib/dndcomment}   % inline comment boxes
 \RequirePackage{lib/dndheader}    % fancy headers and footers
 \RequirePackage{lib/dndmonster}   % \monsterbox definition
-\RequirePackage{lib/dndpaperbox}  % \paperbox definition
-\RequirePackage{lib/dndquote}     % \quotebox definition
 \RequirePackage{lib/dndreadaloud} % read-aloud text
 \RequirePackage{lib/dndsections}  % section styling
 \RequirePackage{lib/dndsidebar}   % sidebars
-\RequirePackage{lib/dndspell}     % \spell definition
 \RequirePackage{lib/dndtable}     % \dndtable definition
 
-\ExplSyntaxOff
