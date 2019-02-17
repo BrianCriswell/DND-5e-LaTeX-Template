@@ -7,19 +7,6 @@
 % Provides class / package option processing of l3keys in LaTeX2e
 \RequirePackage {l3keys2e}
 
-% deprecate warning used in options and throughout the collection
-\msg_new:nnn {dnd} {deprecated} { #1 ~ is ~ deprecated ~ and ~ will ~ be ~ removed ~ in ~ version ~ #2. ~ #3 }
-
-\cs_new_protected:Npn { \__dnd_deprecated:nnn } #1#2#3
-  {
-    \msg_warning:nnnnn { dnd } { deprecated } {#1} {#2} {#3}
-  }
-
-\cs_new_protected:Npn { \__dnd_deprecated:nn } #1#2
-  {
-    \msg_warning:nnnnn { dnd } { deprecated } {#1} {#2} {}
-  }
-
 % These booleans are not set directly by an option (i.e. instead set by .code)
 \bool_new:N \l__dnd_show_background_bool
 \bool_new:N \l__dnd_show_footer_scroll_bool

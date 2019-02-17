@@ -1,0 +1,300 @@
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Items to be removed in 0.8.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Colors
+\colorlet {commentgreen}  {PhbLightGreen}
+\colorlet {itemtablepink} {DmgCoral}
+\colorlet {monstertan}    {statblockbg}
+\definecolor {monstertandark} {HTML} {F0DBB5}
+
+%% Stat block line
+\NewDocumentCommand {\hline}
+  {
+    \__dnd_deprecated:nnn { \noexpand \hline } {0.8.0} { Use ~ \noexpand \DndMonsterBasics ~ and ~ \noexpand \DndMonsterDetails , ~ which ~ include ~ the ~ line ~ directly. }
+    \__dnd_monster_line:
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Items to be removed in 1.0.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Colors
+\NewDocumentCommand {\setthemecolor} { O {themecolor} }
+  {
+    \__dnd_deprecated:nnn { \noexpand \setthemecolor } {1.0.0} { Use ~ \noexpand \DndSetThemeColor ~ instead. }
+    \DndSetThemeColor {#1}
+  }
+
+\colorlet {commentboxcolor} {commentcolor}   % DndComment background
+\colorlet {paperboxcolor}   {sidebarcolor}   % DndSidebar background
+\colorlet {quoteboxcolor}   {readaloudcolor} % DndReadAloud background
+
+%% Comment box
+\NewDocumentEnvironment {commentbox} { O {} m O {commentcolor} }
+  {
+    \__dnd_deprecated:nnn {commentbox} {1.0.0} { Use ~ DndComment ~ instead. }
+    \begin {DndComment} [ #1, color = #3] {#2}
+  }
+  { \end {DndComment} }
+
+%% Fonts
+\NewDocumentCommand {\dnd@TitleFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@TitleFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@TableTitleFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@TableTitleFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@TableBodyFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@TableBodyFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@BoxTitleFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@BoxTitleFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@BoxBodyFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@BoxBodyFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@StatBlockTitleFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@StatBlockTitleFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@StatBlockSubtitleFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@StatBlockSubtitleFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@StatBlockBodyFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@StatBlockBodyFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@FooterFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@FooterFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+\NewDocumentCommand {\dnd@PageNumberFont} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dnd@PageNumberFont } {1.0.0} { The ~ font ~ has ~ not ~ been ~ set. ~ Use ~ \noexpand \DndSetFonts ~ instead. }
+  }
+
+%% Monster
+\NewDocumentCommand {\dndline} {}
+  {
+    \__dnd_deprecated:nnn { \noexpand \hline } {1.0.0} { Use ~ \noexpand \DndMonsterBasics ~ \noexpand \DndMonsterDetails , ~ which ~ include ~ the ~ line ~ directly . }
+    \__dnd_monster_line:
+  }
+
+\NewDocumentCommand {\stat} {m}
+  {
+    \__dnd_deprecated:nnn { \noexpand \stat } {1.0.0} { Use ~ \noexpand \DndMonsterAbilityScores ~ with ~ just ~ the ~ numbers. }
+    \__dnd_ability_score_modifier:N #1
+  }
+
+\NewDocumentCommand {\dice} {m}
+  {
+    \__dnd_deprecated:nnn { \noexpand \dice } {1.0.0} { Use ~ \noexpand \DndDice ~ instead. }
+    \DndDice {#1}
+  }
+
+% Stat block without the background
+\NewDocumentEnvironment {monsterboxnobg} { O {} m }
+  {
+    \__dnd_deprecated:nnn {monsterboxnobg} {1.0.0} { Use ~ DndMonsterNoBg ~ instead. }
+    \begin {DndMonsterNoBg [#1] {#2} }
+  }
+  { \end{DndMonsterNoBg} }
+
+% Stat block with background
+\NewDocumentEnvironment {DndMonsterBg} { O {} m }
+  {
+    \__dnd_deprecated:nnn {DndMonsterBg} {1.0.0} { Use ~ DndMonsterBg ~ instead. }
+    \begin {DndMonsterBg [#1] {#2} }
+  }
+  { \end{DndMonsterBg} }
+
+% Stat block with changing background
+\NewDocumentEnvironment {monsterbox} { O {} m }
+  {
+    \__dnd_deprecated:nnn {monsterbox} {1.0.0} { Use ~ DndMonster ~ instead. }
+    \begin {DndMonster [#1] {#2} }
+  }
+  { \end{DndMonster} }
+
+\bool_if:NTF \l__dnd_show_background_bool
+  {
+    \cs_set_eq:NN \monsterbox \monsterboxbg
+    \cs_set_eq:NN \endmonsterbox \endmonsterboxbg
+  }
+  {
+    \cs_set_eq:NN \monsterbox \monsterboxnobg
+    \cs_set_eq:NN \endmonsterbox \endmonsterboxnobg
+  }
+
+% Define Monster subsection header style
+\NewDocumentCommand {\monstersection} {m}
+  {
+    \__dnd_deprecated:nnn { \noexpand \monstersection } {1.0.0} { Use ~ \noexpand \DndMonsterSection ~ instead. }
+    \DndMonsterSection {#1}
+  }
+
+\NewDocumentEnvironment{monsteraction} {o}
+  {
+    \__dnd_deprecated:nnn {monsteraction} {1.0.0} { Use ~ \noexpand \DndMonsterAction ~ instead. }
+
+    \IfValueTF {#1}
+      { \DndMonsterAction {#1} }
+      {\unskip}
+  }
+  {\par}
+
+% Stat block header
+\NewDocumentCommand {\basics} {o}
+  {
+    \__dnd_deprecated:nnn { \noexpand \basics } {1.0.0} { Use ~ \noexpand \DndMonsterBasics ~ instead. }
+    \DndMonsterBasics {#1}
+  }
+
+% Taubular enviornment for stats-block
+\NewDocumentCommand {\stats} {o}
+  {
+    \__dnd_deprecated:nnn { \noexpand \stats } {1.0.0} { Use ~ \noexpand \DndMonsterAbilityScores ~ with ~ just ~ the ~ numbers. }
+    \DndMonsterAbilityScores {#1}
+  }
+
+\NewDocumentCommand {\details} {o}
+  {
+    \__dnd_deprecated:nnn { \noexpand \details } {1.0.0} { Use ~ \noexpand \DndMonsterDetails ~ instead. }
+    \DndMonsterDetails {#1}
+  }
+
+\NewDocumentCommand {\monstermelee} {o}
+  {
+    \__dnd_deprecated:nnn { \noexpand \monstermelee } {1.0.0} { Use ~ \noexpand \DndMonsterMelee ~ instead. }
+    \DndMonsterMelee {#1}
+  }
+
+\NewDocumentCommand {\monsterranged} {o}
+  {
+    \__dnd_deprecated:nnn { \noexpand \monsterranged } {1.0.0} { Use ~ \noexpand \DndMonsterRanged ~ instead. }
+    \DndMonsterRanged {#1}
+  }
+
+\NewDocumentCommand {\monsterattack} {o}
+  {
+    \__dnd_deprecated:nnn { \noexpand \monsterattack } {1.0.0} { Use ~ \noexpand \DndMonsterAttack ~ instead. }
+    \DndMonsterAttack {#1}
+  }
+
+\NewDocumentCommand {\crexp} { m }
+  {
+    \__dnd_deprecated:nnn { \noexpand \DndCRExp } {1.0.0} { Use ~ the ~ "challenge" ~ key ~ in ~ \noexpand \DndMonsterDetails ~ instead. }
+    \__dnd_cr_xp:N {#1}
+  }
+
+\NewDocumentCommand {\DndCRExp} { m }
+  {
+    \__dnd_deprecated:nnn { \noexpand \DndCRExp } {1.0.0} { Use ~ the ~ "challenge" ~ key ~ in ~ \noexpand \DndMonsterDetails ~ instead. }
+    \__dnd_cr_xp:N {#1}
+  }
+
+%% Read-aloud text
+\NewDocumentEnvironment {quotebox} { O {} m O {sidebarcolor} }
+  {
+    \__dnd_deprecated:nnn {quotebox} {1.0.0} { Use ~ DndReadAloud ~ instead. }
+    \begin {DndReadAloud} [ #1, color = #2]
+  }
+  { \end {DndReadAloud} }
+
+%% Sidebar
+\NewDocumentEnvironment {paperbox} { O {} m O {sidebarcolor} }
+	{
+    \__dnd_deprecated:nnn {paperbox} {1.0.0} { Use ~ DndSidebar ~ instead. }
+    \begin {DndSidebar} [ #1, color = #3] {#2}
+  }
+  { \end {DndSidebar} }
+
+%% Sectioning commands
+\NewDocumentCommand {\subtitlesection} { m m }
+  {
+    \__dnd_deprecated:nnn { \noexpand \subtitlesection } {1.0.0} { Use ~ \noexpand \DndItemHeader ~ instead. }
+    \DndItemHeader {#1} {#2}
+  }
+
+\NewDocumentCommand {\ResetAreas}
+  {
+    \__dnd_deprecated:nnn { \noexpand \ResetAreas } {1.0.0} { Use ~ \noexpand \DndResetAreas ~ instead. }
+    \DndResetAreas
+  }
+
+\NewDocumentCommand {\area} { m o }
+  {
+    \__dnd_deprecated:nnn { \noexpand \area } {1.0.0} { Use ~ \noexpand \DndArea ~ instead. ~ Any ~ optional ~ second ~ argument ~ has ~ been ~ ignored. }
+    \DndArea {#1}
+  }
+
+\NewDocumentCommand {\subarea} { m o }
+  {
+    \__dnd_deprecated:nnn { \noexpand \subarea } {1.0.0} { Use ~ \noexpand \DndSubArea ~ instead. ~ Any ~ optional ~ second ~ argument ~ has ~ been ~ ignored. }
+    \DndSubArea {#1}
+  }
+
+\NewDocumentCommand {\SetDetailAreaPrefix} {m}
+  {
+    \__dnd_deprecated:nnn { \noexpand \SetDetailAreaPrefix } {1.0.0} { Set ~ the ~ "region" ~ key ~ in ~ \noexpand \DndSetAreaOptions ~ instead. }
+    \DndSetAreaOptions { region = #1}
+  }
+
+%% Spell
+\NewDocumentCommand {\spellheader} { m m m m m m }
+  {
+    \__dnd_deprecated:nnn { \noexpand \spellheader } {1.0.0} { Use ~ \noexpand \DndSpellHeader ~ instead. }
+    \DndSpellHeader {#1} {#2} {#3} {#4} {#5} {#6}
+  }
+
+\NewDocumentEnvironment {spell} { m m m m m m }
+  {
+    \__dnd_deprecated:nnn { Environment ~ spell } {1.0.0} { Use ~ \noexpand \DndSpellHeader ~ instead. }
+    \DndSpellHeader {#1} {#2} {#3} {#4} {#5} {#6}
+  }
+  {}
+
+%% Table
+\NewDocumentCommand {\header} {m}
+  {
+    \__dnd_deprecated:nnn { \noexpand \header } {1.0.0} { Set ~ the ~ "header" ~ key ~ on ~ DndTable ~ instead. }
+    \group_begin:
+      \par\vspace*{8pt}
+      \noindent
+      \l__dnd_font_table_title_tl
+      #1
+    \group_end:
+  }
+
+
+\NewDocumentEnvironment {dndtable} { O {XX} O {tablecolor} }
+  {
+    \__dnd_deprecated:nnn { dndtable } {1.0.0} { Use ~ DndTable ~ instead. }
+    \par\vspace*{8pt}
+    \noindent
+    \l__dnd_font_table_body_tl
+    \rowcolors{1}{}{#2}
+    \tabularx{\linewidth}{#1}
+  }{%
+    \endtabularx
+    \vspace{8pt plus 1pt}
+    \noindent
+  }
