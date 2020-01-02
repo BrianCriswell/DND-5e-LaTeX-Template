@@ -1,0 +1,97 @@
+\documentclass[letterpaper]{article}
+\usepackage{lcg,calc}
+\usepackage{tikz}
+\usepackage{fp}
+\usepackage{xstring}
+
+
+
+% Macro to print avarage dice based value 
+% e.g. \dice{2d6+3} prints "10 (2d6 + 3)" 
+\newcommand{\dice}[1]{% 
+	\StrSubstitute{#1}{ }{}[\DiceArg]%				strip whitespaces 
+	\StrCut{\DiceArg}{d}\DiceNum\DiceSides%			split string  into DiceNum and DiceSides with Modifier
+	\StrCut{\DiceSides}{+}\DiceSides\DiceAddMod% 		split
+	\StrCut{\DiceSides}{-}\DiceSides\DiceSubMod% 
+	
+	\FPeval{\DiceAvg}{(\DiceSides+1)/2*\DiceNum}%	calculate avg roll	 
+	\IfInteger{\DiceAddMod}{% 
+		\FPadd{\DiceAvg}{\DiceAvg}{\DiceAddMod}%	add value 
+		\def\DiceMod{ + \DiceAddMod}% 
+	}{% 
+		\IfInteger{\DiceSubMod}{% 
+			\FPsub{\DiceAvg}{\DiceAvg}{\DiceSubMod}%	subtract value 
+			\def\DiceMod{ \(-\) \DiceSubMod}% 
+		}{% 
+			\def\DiceMod{}% 
+		}% 
+	}% 
+	\FPtrunc{\DiceAvg}{\DiceAvg}{0}%				round down 
+	\FPprint{\DiceAvg\ (\DiceNum d\DiceSides\DiceMod)} 
+} 
+
+% Macro to print dynamic dice based on random dice values 
+% Modified by Lloyd Keefer II on 1/2/2020
+\newcommand{\diceRoll}[1]{% 
+	\StrSubstitute{#1}{ }{}[\DiceArg]%				strip whitespaces 
+	\StrCut{\DiceArg}{d}\DiceNum\DiceSides%			split string  into DiceNum and DiceSides with Modifier
+	\StrCut{\DiceSides}{+}\DiceSides\DiceAddMod% 		split
+	\StrCut{\DiceSides}{-}\DiceSides\DiceSubMod% 
+	\newcounter{sumDice}
+	\setcounter{sumDice}{0}
+	\FPset\results{0}
+
+
+	The dice roll for \FPprint{(\DiceArg ) as  } % comment this line out as needed
+
+	% begin Dice Roll calculation without modifier
+	\foreach \d in {1, ..., \DiceNum}{%
+		\reinitrand[first=\d, last=\DiceSides, counter=die] \rand
+		\setcounter{die}{\value{die}}
+                     \addtocounter{sumDice}{\thedie}
+		 \FPprint{\thedie}% This shows dice rolls; comment this line out as needed
+		\
+	}% end for loop
+		\FPprint{ = \thesumDice} \\  % This shows the sume of the dice roll without modifier; comment this line out as needed
+	
+	\FPset\roll{\thesumDice}
+	 \FPadd{\results}{\results}{\roll}
+	
+	Dice Roll is \FPprint\roll% comment this line out as needed
+
+	% begin Mod checker
+  	\IfInteger{\DiceAddMod}{% 
+
+		\FPadd{\results}{\results}{\DiceAddMod}%	add value 
+		\def\DiceMod{ + \DiceAddMod}% 
+	}{% 
+		\IfInteger{\DiceSubMod}{% 
+			\FPsub{\results}{\results}{\DiceSubMod}%	subtract value 
+			\def\DiceMod{ \(-\) \DiceSubMod}% 
+		}{% 
+			\def\DiceMod{}% 
+		}% 
+	}% 
+
+	Modifier was set to \FPprint\DiceMod. \\% comment this line out as needed
+	\FPtrunc{\results}{\results}{0}
+	\indent
+	Result After was set to \FPprint\results. \\% comment this line out as needed
+
+	% add Modifier to dice roll then display final results
+	\FPtrunc{\results}{\results}{0}%				round down 
+	\FPprint{\results\ (\DiceNum d\DiceSides\DiceMod)} 
+	
+} 
+
+
+\begin{document}
+\noindent
+This is the old method\\
+\dice{4d10+5}%
+\\
+\\
+ This is the new dynamic calculation. \\
+\diceRoll{4d10+5}%
+new results
+\end{document}
